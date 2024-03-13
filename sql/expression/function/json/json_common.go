@@ -59,7 +59,7 @@ func getJSONDocumentFromRow(ctx *sql.Context, row sql.Row, json sql.Expression) 
 
 	var converted interface{}
 	switch js.(type) {
-	case string, []interface{}, map[string]interface{}, sql.JSONWrapper:
+	case string, []byte, []interface{}, map[string]interface{}, sql.JSONWrapper:
 		converted, _, err = types.JSON.Convert(js)
 		if err != nil {
 			return nil, sql.ErrInvalidJSONText.New(js)
